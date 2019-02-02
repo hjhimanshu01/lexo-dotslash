@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Lexo-dotslash</string>
+    <string name="ocr_error">Error</string>
+</resources>
