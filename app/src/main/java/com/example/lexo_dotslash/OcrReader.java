@@ -1,64 +1,39 @@
 package com.example.lexo_dotslash;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-import android.support.annotation.IntRange;
 import android.support.v4.app.ActivityCompat;
+import android.view.SurfaceHolder.Callback;
 
 import com.google.android.gms.vision.CameraSource;
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
-
-import android.hardware.Camera;
-import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-//import android.support.design.widget.Snackbar;
-
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
-import android.view.View;
-import android.widget.Toast;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.CommonStatusCodes;
-/*import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSource;
-import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSourcePreview;
-import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
-*/import com.google.android.gms.vision.text.TextBlock;
+import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
-
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.Translate.TranslateOption;
+import com.google.cloud.translate.TranslateOptions;
+import com.google.cloud.translate.Translation;
 import java.io.IOException;
 
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
-import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
-import com.google.android.gms.vision.text.TextBlock;
-import com.google.android.gms.vision.text.TextRecognizer;
+
+//TextView mTextView = findViewById(R.id.text_view);
 
 public class OcrReader extends AppCompatActivity {
 
     private CameraSource mCameraSource;
-    private TextView mTextView;
     private SurfaceView mCameraView;
+    private TextView mTextView;
+    private static String str;
 
     private static final String TAG = "OcrCaptureActivity";
 
@@ -73,6 +48,7 @@ public class OcrReader extends AppCompatActivity {
     public static final String AutoFocus = "AutoFocus";
     public static final String UseFlash = "UseFlash";
     public static final String TextBlockObject = "String";
+    public static final String API_KEY = "AIzaSyD5BnVOLY6l7noslDxtVQUaNbVsyetMdTs";
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -86,35 +62,10 @@ public class OcrReader extends AppCompatActivity {
         if (rc != PackageManager.PERMISSION_GRANTED) {
             requestCameraPermission();
         }*/
+        final Handler textViewHandler = new Handler();
         startCameraSource();
 
     }
-
-    /*private void requestCameraPermission() {
-        Log.w(TAG, "Camera permission is not granted. Requesting permission");
-
-        final String[] permissions = new String[]{Manifest.permission.CAMERA};
-
-        if (!ActivityCompat.shouldShowRequestPermissionRationale(this,
-                Manifest.permission.CAMERA)) {
-            ActivityCompat.requestPermissions(this, permissions, RC_HANDLE_CAMERA_PERM);
-            return;
-        }
-
-        final Activity thisActivity = this;
-
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityCompat.requestPermissions(thisActivity, permissions,
-                        RC_HANDLE_CAMERA_PERM);
-            }
-        };
-
-
-    */
-
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -135,6 +86,7 @@ public class OcrReader extends AppCompatActivity {
             }
         }
     }
+
     private void startCameraSource() {
 
         //Create the TextRecognizer
@@ -209,12 +161,38 @@ public class OcrReader extends AppCompatActivity {
                                     stringBuilder.append(item.getValue());
                                     stringBuilder.append("\n");
                                 }
-                                mTextView.setText(stringBuilder.toString());
+                                //mTextView.setText(stringBuilder.toString());
+                                str = stringBuilder.toString();
+                                translateAsyncTask task = new translateAsyncTask();
+                                task.execute(str);
+                                //mTextView.setText(str + "fuck it");                                }
+
                             }
                         });
                     }
                 }
             });
+        }
+    }
+
+    private class translateAsyncTask extends AsyncTask<String, Void, String> {
+        private static final String API_KEY = "AIzaSyD5BnVOLY6l7noslDxtVQUaNbVsyetMdTs";
+
+        @Override
+        protected String doInBackground(String... strs) {
+            TranslateOptions options = TranslateOptions.newBuilder()
+                    .setApiKey(API_KEY)
+                    .build();
+            Translate translate = options.getService();
+            final Translation translation =
+                    translate.translate(strs[0],
+                            Translate.TranslateOption.targetLanguage("en"));
+
+            return translation.getTranslatedText();
+        }
+        @Override
+        protected void onPostExecute(String str) {
+            mTextView.setText(str);
         }
     }
 }

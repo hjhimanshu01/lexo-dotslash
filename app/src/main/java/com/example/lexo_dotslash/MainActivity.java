@@ -67,7 +67,28 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    
+    /*
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == RC_OCR_CAPTURE) {
+            if (resultCode == CommonStatusCodes.SUCCESS) {
+                if (data != null) {
+                    String text = data.getStringExtra(OcrCaptureActivity.TextBlockObject);
+                    statusMessage.setText("success");
+                    textValue.setText(text);
+                    Log.d(TAG, "Text read: " + text);
+                } else {
+                    statusMessage.setText("failed");
+                    Log.d(TAG, "No Text captured, intent data is null");
+                }
+            } else {
+                statusMessage.setText(R.string.ocr_error);
+            }
+        }
+        else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }*/
 }
 
 
