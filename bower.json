@@ -1,0 +1,20 @@
+{
+    "name": "lexo-dotslash",
+    "description": "",
+    "main": "app.js",
+    "authors": [
+      "lexo"
+    ],
+    "homepage": "https://github.com/hjhimanshu01/lexo-dotslash#readme",
+    "moduleType": [],
+    "ignore": [
+      "**/.*",
+      "node_modules",
+      "bower_components"
+      
+    ],
+    "dependencies": {
+      "jquery": "^2.2.2"
+    }
+  }
+  

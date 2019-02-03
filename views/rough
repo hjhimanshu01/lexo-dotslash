@@ -1,0 +1,8 @@
+#mario-chat
+  h2 Mario Chat
+  #chat-window
+    #output
+    #feedback
+  input#handle(type='text', placeholder='Handle')
+  input#message(type='text', placeholder='Message')
+  button#send Send
