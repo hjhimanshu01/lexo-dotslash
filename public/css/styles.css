@@ -135,14 +135,14 @@ footer p.tzine{
 }
 .sidebar {
 	height: 100%; /* 100% Full-height */
-	width: 0; /* 0 width - change this with JavaScript */
+	width: 350px; /* 0 width - change this with JavaScript */
 	position: fixed; /* Stay in place */
 	z-index: 1; /* Stay on top */
 	top: 0;
 	left: 0;
 	background-color: #111; /* Black*/
 	overflow-x: hidden; /* Disable horizontal scroll */
-	padding-top: 60px; /* Place content 60px from the top */
+	padding-top: 10px; /* Place content 60px from the top */
 	transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
   }
   
@@ -160,6 +160,9 @@ footer p.tzine{
   .sidebar a:hover {
 	color: #f1f1f1;
   }
+
+ 
+
   
   /* Position and style the close button (top right corner) */
   .sidebar .closebtn {
@@ -179,7 +182,12 @@ footer p.tzine{
 	padding: 10px 15px;
 	border: none;
   }
-  
+  .message{
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important ;
+
+	text-align: auto !important;
+
+  }
   .openbtn:hover {
 	background-color: #444;
   }
@@ -196,7 +204,21 @@ footer p.tzine{
 	.sidebar a {font-size: 18px;}
   }
   body{
-    font-family: 'Nunito';
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important ;
+}
+
+.chuyap{
+	/* border-radius: 20px; */
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important ;
+	width: 350px;
+}
+.chuyap-chat{
+	border-radius: 0px;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important ;
+	width: 350px;
+	
 }
 
 h2{
@@ -207,15 +229,16 @@ h2{
 
 #chat{
 	width: 400px;
+	height: 700px;
 
     margin: 30px auto;
-    border: 1px solid rgb(224, 186, 13);
+    /* border: 1px solid rgb(224, 186, 13); */
     box-shadow: 1px 3px 5px rgba(0,0,0,0.05);
     border-radius: 2px;
 }
 
 #chat-window{
-	height: 300px;
+	height: 600px;
 	width: 400px;
 
     overflow: auto;
@@ -242,6 +265,10 @@ h2{
 #output strong{
     color: #575ed8;
 }
+#send{
+	width: 350px;
+}
+
 
 label{
     box-sizing: border-box;

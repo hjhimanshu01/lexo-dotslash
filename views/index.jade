@@ -1,7 +1,7 @@
 html
   head
     meta(charset='utf-8')
-    title Color with Me
+    title Lexo - APP
     style
       include ../public/css/styles.css
     body
@@ -14,14 +14,14 @@ html
         
     div(id="mySidebar" class="sidebar")
       div(id="sidebar" style="margin-right:400px")
-        div(id="chat" )
-          button.btn-default.btn-primary(href="javascript:void(0)" onclick="closeNav()") close chat
-          h2 Messenger
+        div(id="chat"  )
+          button.btn-default.btn-primary(class = "chuyap" href="javascript:void(0)" onclick="closeNav()") Close Chat
+          button.btn-default.btn-primary( class = "chuyap-chat" )   Messenger
           div(id="chat-window" )
             div(id="output" )
             div(id="feedback" placeholder="Messages here")
-          input(id="handle" type="text" placeholder="Your name")
-          input(id="message" type="text" placeholder="message")
+          input(id="handle" type="text" placeholder=" Name ")
+          input(id="message" type="text" placeholder="Message")
           button.btn-default.btn-primary(id="send" style="text:center ") Send
       
     div(id="main")
@@ -36,8 +36,8 @@ html
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
     script.
       function openNav() {
-        document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
+        document.getElementById("mySidebar").style.width = "350px";
+        document.getElementById("main").style.marginLeft = "350px";
         }
       function closeNav() {
         document.getElementById("mySidebar").style.width = "0";
