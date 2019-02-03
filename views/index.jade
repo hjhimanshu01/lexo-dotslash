@@ -2,40 +2,38 @@ html
   head
     meta(charset='utf-8')
     title Color with Me
-    link(rel='stylesheet' href="public/css/styles.css")
     style
       include ../public/css/styles.css
     body
       div(id="cursors")
-    canvas(id="paper" width="190" height="100") 
-    div(id="sidebar" style="width:200px;right:0")
-      div(class="w3-main" style="margin-right:200px")
+    canvas(id="paper" width="1900" height="800") 
+    div(id="sidebar" style="width:400px")
+      div(class="w3-main" style="margin-right:400px")
     
       
         
     div(id="mySidebar" class="sidebar")
-      div(id="sidebar" style="margin-right:200px")
-        div(id="mario-chat" )
-          button.btn-default(href="javascript:void(0)" onclick="closeNav()") close chat
-          h2 Chat
-          div(id="chat-window" style="float:left")
-            div(id="output")
-            div(id="feedback")
-          input(id="handle" type="text" placeholder="handle")
+      div(id="sidebar" style="margin-right:400px")
+        div(id="chat" )
+          button.btn-default.btn-primary(href="javascript:void(0)" onclick="closeNav()") close chat
+          h2 Messenger
+          div(id="chat-window" )
+            div(id="output" )
+            div(id="feedback" placeholder="Messages here")
+          input(id="handle" type="text" placeholder="Your name")
           input(id="message" type="text" placeholder="message")
-          button(id="send") Send
+          button.btn-default.btn-primary(id="send" style="text:center ") Send
       
     div(id="main")
-      button(class="openbtn" onclick="openNav()") toggle
+      
     footer
-      p(id='onlineCounter' href='') Players connected: 0
-    
+      p(id='onlineCounter' href='')  Connected Members: 0
+      button.btn-default.btn-primary(class="openbtn" onclick="openNav()") Send a Message to Community Members
     script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.4/socket.io.js")
     script(src="../bower_components/jquery/dist/jquery.min.js")
     script(src="public/js/script.js")
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
-    script(type="text/javascript" src="./chat1.js")
     script.
       function openNav() {
         document.getElementById("mySidebar").style.width = "250px";
