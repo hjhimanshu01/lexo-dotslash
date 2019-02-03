@@ -24,11 +24,13 @@ html
           input(id="message" type="text" placeholder="Message")
           button.btn-default.btn-primary(id="send" style="text:center ") Send
       
-    div(id="main")
       
     footer
+      input(type="text" id = "url" value= "#{fullUrl} " style="display:none")
+      div(class = "share-buttons")
+        button( id= "share-link" onclick="copy_url()" ) Share Link
+        button.btn-default.btn-primary(class="send-message" onclick="openNav()") Send a Message to Community Members
       p(id='onlineCounter' href='')  Connected Members: 0
-      button.btn-default.btn-primary(class="openbtn" onclick="openNav()") Send a Message to Community Members
     script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.4/socket.io.js")
     script(src="../bower_components/jquery/dist/jquery.min.js")
     script(src="public/js/script.js")
@@ -44,4 +46,8 @@ html
         document.getElementById("main").style.marginLeft = "0";
         } 
 
-        
+      function copy_url() {
+        var copyText = document.getElementById("url");
+        copyText.select();
+          document.execCommand("copy");
+        }

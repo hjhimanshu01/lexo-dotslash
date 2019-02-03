@@ -14,8 +14,9 @@ app.use(express.static('./'))
 
 
 app.get('/',(req,res)=>{
-    
-    res.render('index');
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+
+    res.render('index',{fullUrl:fullUrl});
 })
 
 io.sockets.on('connection', (socket) => {
